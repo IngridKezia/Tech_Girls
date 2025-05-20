@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title> Tech Girls </title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+    </style>
+    
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="assets/css/theme.css" rel="stylesheet" />
+
+  </head>
+
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      
+    
+      
+      
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"> 
+          
+          <a class="navbar-brand d-inline-flex align-items-center" href="index.html">
+           
+            <span class="text-light fs-2 fw-bold">INÍCIO</span>
+          </a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item px-2"><a class="nav-link fw-bold" aria-current="page" href="#collections">COLEÇÃO</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-bold" href="#store">LOJA</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-bold" href="#contact">CONTATO</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-bold" href="#header">REQUEST VIRTUAL</a></li>
+              
+            </ul>
+            <form class="d-flex">
+              <a class="text-primary" href="#!">
+                <svg class="feather feather-phone-call" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                
+                </svg>
+              </a>
+            </form>
+          </div>
+        </div>
+     
+      </nav>
+      <section class="py-0" id="header"> 
+        <div class="bg-holder" style="background-image:url(assets/img/gallery/tenis1.png);background-position-x:150%; background-position-y:top; background-size:contain;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row align-items-center min-vh-75 min-vh-xl-100">
+            <div class="col-md-8 col-lg-6 text-md-start text-center">
+              <h1 class="display-1 lh-sm text-uppercase text-light">O novo ícone das<br class="d-none d-xxl-block" /> ruas está entre nós</h1>
+              <a class="btn btn-sm btn-outline-primary me-3" href="#" data-bs-toggle="modal" data-bs-target="#cadastroModal">
+                CADASTRE-SE
+              </a>
+            </div>
+
+          </div>
+          <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-dark" id="cadastroModalLabel"   color="#000000"> Seja o primeiro a receber as novidades sobre o lançamento </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body"> 
+                 
+                  <form id="dataForm">
+                    <div class="mb-3">
+                      <label for="nome" class="form-label">Nome</label>
+                      <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">E-mail</label>
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
+                    </div>
+                    <div class="d-grid">
+                      <button type="submit" class="btn btn-primary"  style="background-color: #E95D2C; border-color: E95D2C; color: white;" >Cadastrar</button>
+                    </div>
+                  </form> 
+                  <script>
+                    const form = document.getElementById('dataForm');
+                    form.addEventListener('submit', async (e) => {
+                      e.preventDefault();
+                  
+                      const nome = document.getElementById('nome').value.trim();
+                      const email = document.getElementById('email').value.trim();
+                  
+                      const payload = { nome, email };
+                  
+                      try {
+                        const res = await fetch('api.php', {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify(payload)
+                        });
+                  
+                        const json = await res.json();
+                        if (res.ok) {
+                          alert('✅ Cadastrado com sucesso!');
+                          form.reset();
+                        } else {
+                          alert('❌ Erro: ' + json.error);
+                        }
+                      } catch (error) {
+                        console.error('Erro de conexão:', error);
+                        alert('❌ Não foi possível realizar o cadastro.');
+                      }
+                    });
+                  </script>
+          
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+              
+          </div>
+          </div>
+        </div>
+      </section>
+      <section class="bg-black py-8 pt-0" id="store">
+        <div class="bg-holder" style="background-image:url(assets/img/gallery/tenis4.png);background-position:left 20% bottom;background-size:contain;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container-lg">
+          <div class="row flex-center">
+            <div class="col-6 order-md-0 text-center text-md-start"></div>
+            <div class="col-sm-10 col-md-6 col-lg-6 text-center text-md-start">
+              <div class="col-4 position-relative ms-auto py-5"><a class="carousel-control-prev carousel-icon z-index-2" href="#carouselExampleFade" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next carousel-icon z-index-2" href="#carouselExampleFade" role="button" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></a></div>
+              <div class="carousel slide carousel-fade" id="carouselExampleFade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="row h-100"  style="color: white;">
+                      <div class="col-12">
+                        <h5 class="fs-3 fs-lg-5 lh-sm text-uppercase">Nossa Loja</h5>
+                        <p class="my-4 pe-xl-5">Na TG Feminina, cada passo importa. Somos uma loja online dedicada exclusivamente a calçados femininos de alta performance, onde estilo, conforto e tecnologia se encontram. Nossos tênis contam com amortecimento em gel de última geração, garantindo leveza, estabilidade e bem-estar para sua rotina — seja nos treinos, nas caminhadas ou no dia a dia agitado.
+
+                          Mais do que vender tênis, queremos que você se sinta valorizada, confiante e empoderada. Cada modelo é pensado para acompanhar sua jornada com conforto e inovação. Porque você merece o melhor — nos pés e na vida.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="row h-100">
+                      <div class="col-12" style="color: white;">
+                        <h5 class="fs-3 fs-lg-5 lh-sm text-uppercase">Nossa Loja</h5>
+                        <p class="my-4 pe-xl-5">Fundada em 2025, a TG Feminina nasceu com um propósito claro: criar uma marca de calçados que entendesse de verdade a mulher moderna — forte, determinada e em constante movimento. Inspiradas pela rotina intensa das mulheres e pela sua presença cada vez maior no esporte, desenvolvemos uma linha de tênis que une tecnologia avançada, design exclusivo e amortecimento em gel, oferecendo conforto e performance sem abrir mão do estilo.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="row h-100">
+                      <div class="col-12 " style="color: white;">
+                        <h5 class="fs-3 fs-lg-5 lh-sm text-uppercase" >Nossa Loja</h5>
+                        <p class="my-4 pe-xl-5">Mais do que uma loja, somos um movimento. Valorizamos cada conquista feminina, dentro e fora das quadras, pistas ou academias. Queremos que cada mulher que calce um TG sinta que aquele tênis foi feito pensando nela, na sua força, na sua rotina e no seu poder de ir além.
+
+                          Em cada passo, reforçamos: você é protagonista da sua jornada. E a TG Feminina está aqui para caminhar com você.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </section>
+      <section class="py-0 pb-6" id="collections">
+        <div class="container">
+          <div class="row h-100">
+            <div class="col-lg-7 mt-7">
+            </div>
+            <div class="col-12">
+              <nav>
+                <div class="nav nav-tabs watch-tabs mb-4 justify-content-end" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-latest-tab" data-bs-toggle="tab" data-bs-target="#nav-latest" type="button" role="tab" aria-controls="nav-latest" aria-selected="true">MAIS RECENTES </button>
+                  <button class="nav-link" id="nav-popular-tab" data-bs-toggle="tab" data-bs-target="#nav-popular" type="button" role="tab" aria-controls="nav-popular" aria-selected="false">POPULAR</button>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+
+                <!-- CAROUSEL 1 (MAIS RECENTES) - SEM ALTERAÇÕES -->
+                 <div class="tab-pane fade show active" id="nav-latest" role="tabpanel" aria-labelledby="nav-latest-tab">
+                  <div class="carousel slide" id="carouselLatest" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <style>
+                        #carouselLatest .carousel-item {
+                          background-color: #2416e800;
+                          color: #073353;
+                        }
+                        #carouselLatest .bg-custom-Graphite {
+                          background-color: #083d99;
+                        }
+                      </style>
+                      <div class="carousel-item active" data-bs-interval="10000">
+                        <div class="row h-100 align-items-center">
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-custom-Graphite text-white p-6 pb-8">
+                              <img class="card-img" src="assets/img/gallery/Meias Cano Alto TECHGIRLS.jpeg" alt="..." />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                                <h5><p>🔶Design ergonômico</p>
+                                  <p>🔶Malha respirável</p>
+                                   </h5>
+                                <h4 class="text-light">Meias Cano Alto TECHGIRLS</h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                           <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-custom-Graphite text-white p-6 pb-8"><img class="card-img" src="assets/img/gallery/1.2.png" alt="..." />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                                <h5>
+                                  <p>🔶Entressola com cápsula de ar</p>
+                                   <p>🔶Solado ergonômico antiderrapante</p>
+                                </h5>
+                                <h4 class="text-light"> Tênis TECHGIRLS Velocity X </h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                           <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-custom-Graphite text-white p-6 pb-8"><img class="card-img" src="assets/img/gallery/SolaTechGrip.png" alt="..." />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                                <h5>
+                                  <p> 🔶Grip em borracha de alta aderência </p>
+                                   <p> 🔶Zonas de impacto com bolhas de retorno de energia </p>
+                                 </h5>
+                                 <h4 class="text-light">Sola TechGrip</h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="1500">
+                        <div class="row h-100 align-items-center">
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-custom-Graphite text-white p-6 pb-8"><img class="card-img" src="assets/img/gallery/Meias Cano Alto TECHGIRLS.jpeg"  alt="..." />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                              <h5><p>🔶Design ergonômico</p>
+                                  <p>🔶Malha respirável</p>
+                                   </h5>
+                                <h4 class="text-light">Meias Cano Alto TECHGIRLS</h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-custom-Graphite text-white p-6 pb-8"><img class="card-img" src="assets/img/gallery/1.2.png" alt="..."  />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                                <h5>
+                                  <p>🔶Entressola com cápsula de ar</p>
+                                   <p>🔶Solado ergonômico antiderrapante</p>
+                                </h5>
+                                <h4 class="text-light"> Tênis TECHGIRLS Velocity X </h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0">
+                            <div class="card bg-custom-Graphite text-white p-6 pb-8"><img class="card-img" src="assets/img/gallery/SolaTechGrip.png" alt="..." />
+                              <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                                <h5>
+                                  <p>🔶Grip em borracha de alta aderência </p>
+                                   <p>🔶Zonas de impacto com bolhas de retorno de energia </p>
+                                 </h5>
+                                 <h4 class="text-light">Sola TechGrip</h4>
+                              </div><a class="stretched-link" href="#"></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                       <div class="row">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselLatest" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselLatest" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next </span></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- FIM CAROUSEL 1 -->
+
+                   <div class="tab-pane fade" id="nav-popular" role="tabpanel" aria-labelledby="nav-popular-tab">
+                  <div class="carousel slide" id="carouselPopular" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+
+                      <style>
+                        #carouselPopular .carousel-item {
+                          background-color: black; /* Fundo do slide PRETO */
+                        }
+                        #carouselPopular .card {
+                           background-color: #FF8C00; /* Fundo do CARD inteiro LARANJA */
+                           border: none;
+                        }
+                        #carouselPopular .card-body {
+                           /* Fundo laranja herdado do .card */
+                           color: white; /* Texto branco */
+                           padding: 1rem;
+                        }
+                        #carouselPopular .card-img-top {
+                          object-fit: contain;
+                          max-height: 200px; /* Ajuste a altura máxima da imagem conforme necessário */
+                          margin-top: 1rem;  /* Espaço acima da imagem, ajuste se necessário */
+                        }
+                      </style>
+
+                      <div class="carousel-item active" data-bs-interval="10000">
+                        <div class="row h-100 align-items-stretch">
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0 d-flex">
+                             <div class="card h-100 w-100 text-white">
+                               <img class="card-img-top" src="assets/img/gallery/Design sem nome (5).png" alt="TechBolt Vibe shoe" />
+                               <div class="card-body text-center d-flex flex-column justify-content-center">
+                                    <h4 class="mb-2">TechBolt Vibe</h4> 
+                                    <h5><p>🔶Preto com detalhes em vermelho e amarelo</p>
+                                      <p>🔶Com um design ousado e enérgico, o TechBolt Vibe combina estilo e desempenho. Ideal para quem quer se destacar com atitude e conforto.</p>
+                                       </h5>
+                                     <a href="#" class="stretched-link"></a>
+                               </div>
+                             </div>
+                          </div>
+                           <div class="col-sm-6 col-md-4 mb-3 mb-md-0 d-flex">
+                             <div class="card h-100 w-100 text-white">
+                              <img class="card-img-top" src="assets/img/gallery/Design sem nome (4).png" alt="TechAir Pulse shoe" />
+                               <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <h4 class="mb-2">TechAir Pulse</h4> 
+                                <h5><p>🔶Azul vibrante com sola contrastante</p>
+                                  <p>🔶Leve e arejado, o TechAir Pulse é perfeito para treinos dinâmicos. Oferece amortecimento eficiente e excelente respirabilidade.</p>
+                                   </h5>
+                                 <a href="#" class="stretched-link"></a>
+                               </div>
+                            </div>
+                          </div>
+                           <div class="col-sm-6 col-md-4 mb-3 mb-md-0 d-flex">
+                             <div class="card h-100 w-100 text-white">
+                              <img class="card-img-top" src="assets/img/gallery/Design sem nome (6).png" alt="TechCore Stealth shoe" />
+                               <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <h4 class="mb-2">TechCore Stealth</h4> 
+                                <h5><p>🔶Preto monocromático com detalhes laranja</p>
+                                  <p>🔶Discreto e elegante, o TechCore Stealth é um tênis versátil para o dia a dia, combinando durabilidade e um visual moderno.</p>
+                                   </h5>
+                                 <a href="#" class="stretched-link"></a>
+                               </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="carousel-item" data-bs-interval="2000">
+                        <div class="row h-100 align-items-stretch">
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0 d-flex">
+                             <div class="card h-100 w-100 text-white">
+                              <img class="card-img-top" src="assets/img/gallery/Design sem nome (7).png" alt="TechStep Sahara shoe" />
+                               <div class="card-body text-center d-flex flex-column justify-content-center">
+                                  <h4 class="mb-2">TechStep Sahara</h4> 
+                                   <h5><p>🔶Bege claro com solado texturizado</p>
+                                    <p>🔶Inspirado nas areias do deserto, o TechStep Sahara alia sofisticação e conforto em um modelo minimalista e funcional.</p>
+                                     </h5>
+                                   <a href="#" class="stretched-link"></a>
+                               </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0 d-flex">
+                             <div class="card h-100 w-100 text-white">
+                              <img class="card-img-top" src="assets/img/gallery/Design sem nome (8).png" alt="TechRunner Velocity shoe" />
+                               <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <h4 class="mb-2">TechRunner Velocity</h4> 
+                                <h5><p>🔶 Branco com detalhes em preto esportivo</p>
+                                  <p>🔶Um modelo que exala velocidade e leveza. O TechRunner Velocity é ideal para quem busca performance com design esportivo.</p>
+                                   </h5>
+                                 <a href="#" class="stretched-link"></a>
+                               </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0 d-flex">
+                             <div class="card h-100 w-100 text-white">
+                              <img class="card-img-top" src="assets/img/gallery/Design sem nome (9).png" alt="TechTrek Forge shoe" />
+                               <div class="card-body text-center d-flex flex-column justify-content-center">
+                               <h4 class="mb-2">TechTrek Forge</h4> 
+                               <h5><p>🔶 Preto com detalhes laranja em acabamento fosco</p>
+                                <p>🔶Bota urbana com espírito aventureiro. Resistente e estilosa, o TechTrek Forge é feita para os que encaram qualquer terreno.</p>
+                                 </h5>
+                               <a href="#" class="stretched-link"></a>
+                               </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="carousel-item" data-bs-interval="2000">
+                        <div class="row h-100 align-items-stretch">
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0 d-flex">
+                             <div class="card h-100 w-100 text-white">
+                              <img class="card-img-top" src="assets/img/gallery/UrbanDrift.png" alt="Urban Drift shoe" />
+                              <div class="card-body text-center d-flex flex-column justify-content-center">
+                               <h4 class="mb-2">Urban Drift</h4> 
+                               <h5><p>🔶 Bege com design robusto e linhas modernas</p>
+                                <p>🔶Seu visual limpo e estruturado traz equilíbrio entre conforto e presença urbana. Ideal para quem quer caminhar com estilo e leveza sem abrir mão da personalidade.</p>
+                                 </h5>
+                               <a href="#" class="stretched-link"></a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0 d-flex">
+                             <div class="card h-100 w-100 text-white">
+                              <img class="card-img-top" src="assets/img/gallery/ShadowPulse.png" alt="Shadow Pulse shoe" />
+                               <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <h4 class="mb-2">Shadow Pulse</h4> 
+                                 <h5><p>🔶 Branco com preto em design robusto</p>
+                                  <p>🔶equilibrando conforto e presença urbana. Sua construção firme e contrastante é perfeita para quem busca um visual marcante aliado à funcionalidade no dia a dia.</p>
+                                   </h5>
+                                 <a href="#" class="stretched-link"></a>
+                               </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6 col-md-4 mb-3 mb-md-0 d-flex">
+                             <div class="card h-100 w-100 text-white">
+                              <img class="card-img-top" src="assets/img/gallery/Design sem nome (11).png" alt="TechDrift Legacy shoe" />
+                               <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <h4 class="mb-2">TechDrift Legacy</h4> 
+                                <h5><p>🔶 Branco com preto em design robusto</p>
+                                  <p>🔶O TechDrift Legacy traz um estilo retrô-futurista, equilibrando conforto e presença urbana. Ideal para quem quer caminhar com estilo e personalidade.</p>
+                                   </h5>
+                                 <a href="#" class="stretched-link"></a>
+                               </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselPopular" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselPopular" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next </span></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                 <!-- FIM CAROUSEL 2 -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+      <!-- ============================================-->
+      <!-- <section> carrossel clientes ============================-->
+        <section id="testimonial">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-7 mx-auto text-center my-5">
+                <h5 class="fs-3 fs-lg-5 lh-sm mb-0 text-uppercase">O que os clientes estão dizendo</h5>
+              </div>
+            </div>
+            <div class="row flex-center h-100">
+              <div class="col-xl-9">
+                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                  <div class="carousel-inner">
+                    
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                      <div class="row h-100 justify-content-center">
+                        <!-- Cliente 1 -->
+                        <div class="col-md-6 mb-4">
+                          <div class="card h-100 shadow card-span p-3 bg-black text-white">
+                            <div class="card-body">
+                              <div class="d-flex align-items-center">
+                                <img class="img-fluid" src="assets/img/gallery/cliente1.png" width="80" alt="Sara Vitoria" />
+                                <div class="flex-1 ms-4">
+                                  <h6 class="fs-lg-1 mb-1 text-uppercase">Sara Vitoria</h6>
+                                </div>
+                              </div>
+                              <p class="mb-0 mt-4 fw-light lh-lg">Esse tênis esportivo é um verdadeiro marco no mundo da tecnologia! Além de ser super estiloso, ele conta com recursos inovadores que garantem um desempenho superior durante os treinos. Estou super ansiosa para testar o conforto e a tecnologia que ele oferece!</p>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Cliente 2 -->
+                        <div class="col-md-6 mb-4">
+                          <div class="card h-100 shadow card-span p-3 bg-black text-white">
+                            <div class="card-body">
+                              <div class="d-flex align-items-center">
+                                <img class="img-fluid" src="assets/img/gallery/cliente2.png" width="80" alt="Ingrid Kezia" />
+                                <div class="flex-1 ms-4">
+                                  <h6 class="fs-lg-1 mb-1 text-uppercase">Ingrid Kezia</h6>
+                                </div>
+                              </div>
+                              <p class="mb-0 mt-4 fw-light lh-lg">Nunca imaginei que um tênis esportivo pudesse ser tão tecnológico! Ele não só tem um design maravilhoso, mas também possui funções que melhoram a performance e proporcionam muito mais conforto. Já estou planejando usar ele em todas as minhas atividades físicas!</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                      <div class="row h-100 justify-content-center">
+                        <!-- Cliente 3 -->
+                        <div class="col-md-6 mb-4">
+                          <div class="card h-100 shadow card-span p-3 bg-black text-white">
+                            <div class="card-body">
+                              <div class="d-flex align-items-center">
+                                <img class="img-fluid" src="assets/img/gallery/cliente3.png" width="80" alt="Emylli Cristina" />
+                                <div class="flex-1 ms-4">
+                                  <h6 class="fs-lg-1 mb-1 text-uppercase">Emylli Cristina</h6>
+                                </div>
+                              </div>
+                              <p class="mb-0 mt-4 fw-light lh-lg">Estou super ansiosa para conseguir esse tênis! Ele tem um design incrível e estou adorando o fato de ser tão versátil. Já estou imaginando os looks perfeitos para arrasar com ele. Não vejo a hora de tê-lo nos meus pés!</p>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Cliente 4 -->
+                        <div class="col-md-6 mb-4">
+                          <div class="card h-100 shadow card-span p-3 bg-black text-white">
+                            <div class="card-body">
+                              <div class="d-flex align-items-center">
+                                <img class="img-fluid" src="assets/img/gallery/cliente4.png" width="80" alt="Juliana Alves" />
+                                <div class="flex-1 ms-4">
+                                  <h6 class="fs-lg-1 mb-1 text-uppercase">Juliana Alves</h6>
+                                </div>
+                              </div>
+                              <p class="mb-0 mt-4 fw-light lh-lg">A cada dia que passa, fico mais impressionada com os recursos desse tênis. Ele não é apenas confortável, mas possui tecnologias de ponta que vão elevar a minha experiência durante os treinos. Estou realmente ansiosa para ver como ele vai transformar minha rotina de exercícios!</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                      <div class="row h-100 justify-content-center">
+                        <!-- Cliente 5 -->
+                        <div class="col-md-6 mb-4">
+                          <div class="card h-100 shadow card-span p-3 bg-black text-white">
+                            <div class="card-body">
+                              <div class="d-flex align-items-center">
+                                <img class="img-fluid" src="assets/img/gallery/cliente5.png" width="80" alt="EKelly Ramos" />
+                                <div class="flex-1 ms-4">
+                                  <h6 class="fs-lg-1 mb-1 text-uppercase">EKelly Ramos</h6>
+                                </div>
+                              </div>
+                              <p class="mb-0 mt-4 fw-light lh-lg">Estou super ansiosa para conseguir esse tênis! Ele tem um design incrível e estou adorando o fato de ser tão versátil. Já estou imaginando os looks perfeitos para arrasar com ele. Não vejo a hora de tê-lo nos meus pés!</p>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Cliente 6 -->
+                        <div class="col-md-6 mb-4">
+                          <div class="card h-100 shadow card-span p-3 bg-black text-white">
+                            <div class="card-body">
+                              <div class="d-flex align-items-center">
+                                <img class="img-fluid" src="assets/img/gallery/cliente6.png" width="80" alt="Isabele Dias" />
+                                <div class="flex-1 ms-4">
+                                  <h6 class="fs-lg-1 mb-1 text-uppercase">Isabele Dias</h6>
+                                </div>
+                              </div>
+                              <p class="mb-0 mt-4 fw-light lh-lg">Nunca imaginei que um tênis esportivo pudesse ser tão tecnológico! Ele não só tem um design maravilhoso, mas também possui funções que melhoram a performance e proporcionam muito mais conforto. Já estou planejando usar ele em todas as minhas atividades físicas!</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+        
+                  </div>
+        
+                  <!-- Indicadores -->
+                  <div class="row mt-5 flex-center">
+                    <div class="col-auto position-relative z-index-2">
+                      <ol class="carousel-indicators">
+                        <li class="active mx-2" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0"></li>
+                        <li class="mx-2" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1"></li>
+                        <li class="mx-2" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2"></li>
+                      </ol>
+                    </div>
+                  </div>
+        
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+       <!-- rodape -->
+       
+        <section class="bg-dark text-light pt-5 pb-4" id="contact">
+          <div class="container">
+            <div class="row gy-4">
+              <!-- Logo -->
+              <div class="col-12 col-sm-6 col-lg-3">
+                <img src="assets/img/gallery/Logo laranja.png" alt="Logo" width="180" class="img-fluid mb-3">
+              </div>
+        
+              <!-- Menu Principal -->
+              <div class="col-6 col-sm-6 col-lg-3">
+                <h5 class="fw-bold text-uppercase mb-3">Menu</h5>
+                <ul class="list-unstyled">
+                  <li><a href="#!" class="text-light text-decoration-none d-block mb-2">Informações de envio</a></li>
+                  <li><a href="#!" class="text-light text-decoration-none d-block mb-2">Reembolsos</a></li>
+                  <li><a href="#!" class="text-light text-decoration-none d-block mb-2">Como encomendar</a></li>
+                  <li><a href="#!" class="text-light text-decoration-none d-block mb-2">Como rastrear</a></li>
+                  <li><a href="#!" class="text-light text-decoration-none d-block">Guia de tamanhos</a></li>
+                </ul>
+              </div>
+        
+              <!-- Links de Conta -->
+              <div class="col-6 col-sm-6 col-lg-3">
+                <h5 class="fw-bold text-uppercase mb-3">Conta</h5>
+                <ul class="list-unstyled">
+                  <li><a href="#!" class="text-light text-decoration-none d-block mb-2">Contate-nos</a></li>
+                  <li><a href="#!" class="text-light text-decoration-none d-block">Minha conta</a></li>
+                </ul>
+              </div>
+        
+              <!-- Redes Sociais -->
+              <div class="col-12 col-lg-3 text-center text-lg-end">
+                <h5 class="fw-bold text-uppercase mb-3">Siga-nos</h5>
+                <a href="#!" class="text-light me-3"><i data-feather="facebook"></i></a>
+                <a href="#!" class="text-light me-3"><i data-feather="instagram"></i></a>
+                <a href="#!" class="text-light me-3"><i data-feather="youtube"></i></a>
+                <a href="#!" class="text-light"><i data-feather="twitter"></i></a>
+              </div>
+            </div>
+        
+            <!-- Linha de separação -->
+            <hr class="border-top border-secondary my-4" />
+        
+            <!-- Copyright -->
+            <div class="row">
+              <div class="col text-center">
+                <small class="text-muted">&copy; 2025 TECHGIRLS. Todos os direitos reservados.</small>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+          <!-- end of .container-->
+  
+        </section>
+        <!-- <section> close ============================-->
+        <!-- ============================================-->
+  
+  
+      </main>
+      <!-- ===============================================-->
+      <!--    End of Main Content-->
+      <!-- ===============================================-->
+  
+  
+  
+  
+      <!-- ===============================================-->
+      <!--    JavaScripts-->
+      <!-- ===============================================-->
+      <script src="vendors/@popperjs/popper.min.js"></script>
+      <script src="vendors/bootstrap/bootstrap.min.js"></script>
+      <script src="vendors/is/is.min.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+      <script src="vendors/feather-icons/feather.min.js"></script>
+      <script>
+        feather.replace();
+      </script>
+      <script src="assets/js/theme.js"></script>
+  
+      <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&amp;display=swap" rel="stylesheet">
+    </body>
+  
+  </html>
